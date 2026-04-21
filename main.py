@@ -1,3 +1,18 @@
+"""
+My work schuduler idea
+Developed by:
+person6054 aka my discord
+
+Description:
+This project I made a while ago because I wanted to set what I 
+had on paper in a program to automate the process.
+It is essentially where you must do 1 easy, medium, and hard task
+to gain a reward point (having fun/entertainment). I put
+most of my rules in it as well (3 reward point cap, ect), and
+I note down stats to csv and json files for saving. Along with perks 
+and level.
+"""
+
 from models import User
 from services import SchedulerService
 
