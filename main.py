@@ -16,7 +16,7 @@ and level.
 from models import User
 from services import SchedulerService
 
-
+# This script acts as the main loop, and uses a while loop to get the users decision
 def main():
     user = User()
     service = SchedulerService(user)
