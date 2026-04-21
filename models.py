@@ -3,7 +3,7 @@ from utils import load_stats
 
 STATS_PATH = "data/stats.csv"
 
-
+# This class allows us to edit the task (easy, medium, stat tracking for it, ect)
 class Task:
     def __init__(self, name, win_condition, time_box, task_type, exp):
         self.name = name
@@ -13,6 +13,7 @@ class Task:
         self.exp = exp
         self.times_completed = 0  # per day
 
+    # Most method names are pretty straight forward in saying what they do or check
     def can_complete(self):
         return self.times_completed < 3
 
@@ -28,7 +29,7 @@ class Task:
 
         return True
 
-
+# Puts the User into a class so we can define attributes like their points, exp, levels, and inventory (perks)
 class User:
     def __init__(self):
         self.reward_points = 0
@@ -42,6 +43,7 @@ class User:
 
         row = load_stats(STATS_PATH)
 
+        # This just checks to see if we already had stats, and then it loads it up into the class when we initialize
         if row:
             print(row)
             self.reward_points = int(row["reward_points"])
@@ -69,6 +71,7 @@ class User:
 
             print("Reward point earned!")
 
+    # The rest of the methods are pretty self explainatory
     def add_exp(self, amount):
         self.exp += amount
         if self.exp >= 500:
@@ -88,6 +91,7 @@ class User:
             return True
         return False
 
+    # This allows us to work with our csv file easier to pinpoint the locations based on the index.
     def to_row(self):
         return [
             self.reward_points,
