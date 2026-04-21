@@ -1,17 +1,19 @@
 from models import Task
 from utils import load_json, random_perk, save_stats
 
+# Constants
 TASK_PATH = "data/tasks.json"
 PERK_PATH = "data/perks.json"
 STATS_PATH = "data/stats.csv"
 
-
+# This is the main program where everything is set up in terms of the logic
 class SchedulerService:
     def __init__(self, user):
         self.user = user
         self.tasks_data = load_json(TASK_PATH)
         self.perks_data = load_json(PERK_PATH)
 
+        # Uses the class we previously mentioned with all the stats fille dout for each from the tasks.json
         self.tasks = {
             "easy": [
                 Task(t["name"], t["win_condition"], t["time_box"], t["type"], t["exp"])
@@ -31,6 +33,7 @@ class SchedulerService:
         self.reward_cap = 3
         self.reward_hours_map = [1, 1.5, 2]
 
+    # The rest of the methods are fairly self explainatory
     def view_tasks(self, difficulty):
         tasks = self.tasks[difficulty]
         for i, t in enumerate(tasks, 1):
@@ -73,7 +76,7 @@ class SchedulerService:
             perk = random_perk(self.perks_data)
             self.user.add_perk(perk)
             print(f"Leveled up! Gained perk: {perk}")
-
+    
     def show_perks(self):
         if not self.user.perks:
             print("No perks.")
@@ -128,6 +131,7 @@ class SchedulerService:
 
         print("New day started.")
 
+    # This allows us to see how much time we have spent
     def get_hours_on_activity(self, task_name):
         for difficulty in self.tasks:
             for task in self.tasks[difficulty]:
