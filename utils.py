@@ -1,3 +1,8 @@
+"""
+This file is used for the data saving
+to make it easier and separated from the other files
+"""
+
 import json
 import csv
 import random
@@ -9,7 +14,7 @@ def load_json(path):
     with open(path, "r") as f:
         return json.load(f)
 
-
+# For the csv to understand 
 HEADERS = [
     "reward_points",
     "exp",
@@ -19,7 +24,7 @@ HEADERS = [
     "tasks_completed"
 ]
 
-
+# Generally with open works the best compared to file.open, as it closes it automatically outside the loop, hence my usage here.
 def save_stats(path, data):
     file_exists = os.path.isfile(path)
 
@@ -57,6 +62,6 @@ def is_csv_not_empty(file_path):
         print(f"Error reading CSV: {e}")
         return False
 
-
+# Just a quick utility function
 def random_perk(perks):
     return random.choice(perks)
